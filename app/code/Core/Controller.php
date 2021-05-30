@@ -20,7 +20,6 @@ class Controller
         $this->setSuccessMessageForTemplate();
         $this->initResourses();
         $this->newMesseges();
-
     }
 
     public function render($template, $data)
@@ -30,7 +29,6 @@ class Controller
         include_once PROJECT_ROOT . '/app/template/page/footer.php';
         $this->message->unsetErorrMeesage();
         $this->message->unsetSuccessMeesage();
-
     }
 
     public function setErrorMessageForTemplate()
@@ -60,11 +58,11 @@ class Controller
 
     public function newMesseges()
     {
-        if($this->isLogedIn())
-        {
-            $newMessagesCount = MessageModule::getNewMessages($this->userSession->getAuthUserId());
+        if ($this->isLogedIn()) {
+            $newMessagesCount = MessageModule::getNewMessages(
+                $this->userSession->getAuthUserId()
+            );
             $this->data['new_messages'] = $newMessagesCount[0]['count'];
         }
     }
-
 }

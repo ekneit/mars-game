@@ -12,7 +12,7 @@ class Message extends ModelAbstract
     public const REPLAY_ID_COLUMN = 'reply_id';
     public const STATUS_COLUMN = 'status';
     public const SENDER_ID_COLUMN = 'sender_id';
-    public const RECEIVER_ID_COLUM  = 'receiver_id';
+    public const RECEIVER_ID_COLUM = 'receiver_id';
 
     private $subject;
     private $message;
@@ -119,28 +119,40 @@ class Message extends ModelAbstract
     public static function getNewMessages($id)
     {
         $db = new DB();
-        return $db->select('COUNT(*) as count')
+        return $db
+            ->select('COUNT(*) as count')
             ->from(self::TABLE_NAME)
-            ->where(self::RECEIVER_ID_COLUM,$id)
-            ->whereAnd(self::STATUS_COLUMN,'1')
+            ->where(self::RECEIVER_ID_COLUM, $id)
+            ->whereAnd(self::STATUS_COLUMN, '1')
             ->get();
     }
     public static function getAllrecevMessages($id)
     {
         $db = new DB();
-        return $db->select('id,subject,receiver_id,status,create_at')->from(self::TABLE_NAME)->where(self::RECEIVER_ID_COLUM,$id)->get();
+        return $db
+            ->select('id,subject,receiver_id,status,create_at')
+            ->from(self::TABLE_NAME)
+            ->where(self::RECEIVER_ID_COLUM, $id)
+            ->get();
     }
     public static function getAllsendMessages($id)
     {
         $db = new DB();
-        return $db->select('id,subject,sender_id,status,create_at')->from(self::TABLE_NAME)->where(self::SENDER_ID_COLUMN,$id)->get();
+        return $db
+            ->select('id,subject,sender_id,status,create_at')
+            ->from(self::TABLE_NAME)
+            ->where(self::SENDER_ID_COLUMN, $id)
+            ->get();
     }
     public function load($id)
     {
         $db = new Db();
-        $messages = $db->select()->from(self::TABLE_NAME)->where(self::ID_COLUMN,$id)->getOne();
-        if(!empty($messages)) {
-
+        $messages = $db
+            ->select()
+            ->from(self::TABLE_NAME)
+            ->where(self::ID_COLUMN, $id)
+            ->getOne();
+        if (!empty($messages)) {
             $this->id = $messages[self::ID_COLUMN];
             $this->subject = $messages[self::SUBJECT_COLUMN];
             $this->message = $messages[self::MESSAGE_COLUMN];
@@ -150,8 +162,7 @@ class Message extends ModelAbstract
             $this->receiverId = $messages[self::RECEIVER_ID_COLUM];
 
             return $this;
-
-            }
+        }
 
         return null;
     }
@@ -164,10 +175,7 @@ class Message extends ModelAbstract
             self::REPLAY_ID_COLUMN => $this->replyId,
             self::STATUS_COLUMN => $this->status,
             self::SENDER_ID_COLUMN => $this->senderId,
-            self::RECEIVER_ID_COLUM => $this->receiverId
+            self::RECEIVER_ID_COLUM => $this->receiverId,
         ];
     }
-
-
-
 }

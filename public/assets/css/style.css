@@ -124,10 +124,10 @@ body .navbar{
 .field.current-user-field{
     border: 1px solid #00ff00;
 }
-
 .field:hover .info-box{
     display: block;
 }
+
 .info-box{
     display: none;
     position: absolute;
@@ -135,15 +135,18 @@ body .navbar{
     background: #fff;
     right: 30px;
 }
+
 table, th, td {
     border: 1px solid black;
     text-align: center;
 }
+
 table {
     width: 80%;
     margin: 0 auto;
     border-collapse: collapse;
 }
+
 .wrapper{
     max-width: 1400px;
     min-height: 500px;
@@ -152,10 +155,12 @@ table {
     text-align: center;
     background: white;
 }
+
 .message_link-bold {
     color: black;
     font-weight: 600;
 }
+
 .message_link {
     color: black;
 }

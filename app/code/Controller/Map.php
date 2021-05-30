@@ -41,6 +41,7 @@ class Map extends Controller
             $this->data['buildings'] = CityBuildings::prepeare($city);
             $this->render('game/city', $this->data);
         }else{
+            $this->data['city_user_id'] = $field->getUserId();
             $this->render('game/enemy_city', $this->data);
         }
 

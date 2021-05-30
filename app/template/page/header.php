@@ -28,6 +28,7 @@
                     <?php else: ?>
                         <li><a href="<?php echo BASE_URL ?>/map">Map</a></li>
                         <li><a href="<?php echo BASE_URL ?>/map/city/">City</a></li>
+                        <li><a href="<?php echo BASE_URL ?>/message">Messages(<?= $data['new_messages'] ?>)</a></li>
                         <li><a href="<?php echo BASE_URL ?>/user/edit">My account</a></li>
                         <li><a href="<?php echo BASE_URL ?>/user/logout">Logout</a></li>
                     <?php endif; ?>

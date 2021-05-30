@@ -5,6 +5,7 @@ namespace Core;
 use Session\Message;
 use Session\User as UserSession;
 use Service\Game\Resource;
+use Model\Message as MessageModule;
 
 class Controller
 {
@@ -18,6 +19,7 @@ class Controller
         $this->setErrorMessageForTemplate();
         $this->setSuccessMessageForTemplate();
         $this->initResourses();
+        $this->newMesseges();
 
     }
 
@@ -53,6 +55,15 @@ class Controller
             $this->data['resources'] = $resources->getUserResources();
         } else {
             $this->data['resources'] = false;
+        }
+    }
+
+    public function newMesseges()
+    {
+        if($this->isLogedIn())
+        {
+            $newMessagesCount = MessageModule::getNewMessages($this->userSession->getAuthUserId());
+            $this->data['new_messages'] = $newMessagesCount[0]['count'];
         }
     }
 
